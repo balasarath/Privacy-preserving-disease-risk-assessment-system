@@ -1,0 +1,9 @@
+body{
+    background-image: url("../images/doctors_image.jpg");
+    background-repeat: no-repeat;
+    background-size: cover; 
+    background-attachment: fixed;
+  }
+.cen{
+  text-align: center;
+}

@@ -1,0 +1,24 @@
+.rowtop{
+    margin-top: 100px;
+    margin-left: 100px;
+  }
+  .predictbut{
+    margin-left: 420px;
+    margin-top : 90px;
+  }
+  .resetbut{
+    margin-left: 100px;
+    margin-top : 90px;
+    width:100px;
+  }
+  option{
+      margin-left : 0px;
+  }
+  body{
+      min-height: 100vh;
+      background-image: url("../images/doctors_image.jpg");
+      background-repeat: no-repeat;
+      background-size: cover; 
+      background-attachment: fixed;
+    }
+  

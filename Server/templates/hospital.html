@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+    {% load static %}
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>HOSPITAL - DISEASE RISK EVALUATOR</title>
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="stylesheet" href= "{% static 'css/hospital.css' %}">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/peterolson/BigInteger.js@1.6.40/BigInteger.min.js"></script>
+        <script src="{% static 'js/hospital.js' %}"></script>   
+    </head>
+  
+    <body id="top" onload = Assign()>
+            <div class ="row">
+							<nav class="navbar navbar-expand-lg navbar-light bg-light">
+							  <div class="container-fluid">
+							    <a class="navbar-brand" href="#">DISEASE RISK EVALUATOR</a>
+							    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+							      <span class="navbar-toggler-icon"></span>
+							    </button>
+							    <div class="collapse navbar-collapse" id="navbarNav">
+							      <ul class="navbar-nav">
+							        <li class="nav-item">
+							          <a class="nav-link active" aria-current="page" href="#">Home</a>
+							        </li>
+                      <li class="nav-item">
+							          <a class="nav-link" onclick= contact()>Contact</a>
+							        </li>
+							        <li class="nav-item">
+							          <a class="nav-link" onclick="aboutUs()">About us</a>
+							        </li>
+							      </ul>
+							    </div>
+							  </div>
+							</nav>
+            </div>
+            
+            <div class = "downloaderinfo">
+              <div class ="row">
+                  <div class="col"></div>
+                  <div class="col"><h5>Download sample input structure for .csv file here</h5></div>
+                  <div class="col"></div>
+              </div>
+            </div>
+
+            <div class = "downloader">
+              <div class ="row ">
+                  <div class="col"></div>
+                  <div class="col">
+                      <div class ="row">
+                          <div class="col"></div>
+                          <div class="col">
+                              <a  href="{% url "sendFile" %}" download="SampleInputStructure.csv" class="btn btn-warning">DOWNLOAD</a>
+                          </div>
+                          <div class="col"></div>
+                      </div>
+                  </div>
+                  <div class="col"></div>
+              </div>
+            </div>
+            
+                <!-- <form id = "myForm" method="post" action ="{% url "uploadFile" %}" enctype="multipart/form-data">  -->
+                  <form id = "myForm" method="POST" action ="{% url "uploadFile" %}"   enctype="multipart/form-data"> 
+                    {% csrf_token %}                     
+                   <div class = "chooser">
+                      <div class ="row">
+                          <div class="col"></div>
+                          <div class="col"><h5>Upload DATASET here (Allowed format .csv)</h5>
+                              <br>
+                              <input class="form-control form-control-lg" id="formFileLg" type="file" name = 'file'></div>
+                          <div class="col"></div>
+                      </div>
+                    </div>
+                    <input type="hidden" value="" name="reqdata" id="reqdata">
+                    <div class = "uploader">
+                      <div class ="row ">
+                          <div class="col"></div>
+                          <div class="col">
+                              <div class ="row">
+                                  <div class="col"></div>
+                                  <div class="col">
+                                      <button  onclick="showProgress()" type="button" class="btn btn-warning">TRAIN NOW</button>
+                                  </div>
+                                  <div class="col"></div>
+                              </div>
+                          </div>
+                          <div class="col"></div>
+                      </div>
+                    </div>
+                  </form>
+                  <br>
+                  <br>
+                  <div class = "progressDisplay"  id = "progressDisplay">
+                    <div class="row">
+                        <div class = "col"></div>
+                        <div class = "col">
+                          <div class="card ">
+                            <div class="card-body">
+                              <h4>Model training is under process, please wait!</h4>
+                              <div class = "progressCus" id="progressCus"> 
+                                <div class = "innerprgCus" id="innerprgCus"></div>
+                            </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class = "col"></div>
+                    </div>
+                  </div> 
+                  <br>
+                  <br>
+                  <div id = "res"  style="display:none; text-align:center;"  role="alert">
+                    <h4 id="resdis"> </h4>
+                  </div>
+    </body>
+</html>
